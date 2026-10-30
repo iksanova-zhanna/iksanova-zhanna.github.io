@@ -232,50 +232,42 @@ h2:focus{outline:none}
 .end{padding-bottom:36vh}
 .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--slate);margin-top:22px}
 
-/* Resilient layout: compact until the 3D scene has rendered successfully. */
-html{scroll-padding-top:110px}
-body{margin:0}
-.bar{isolation:isolate}
-.lang button{min-height:36px}
-.hero{padding-top:110px}
-.hero::before{max-width:100%;pointer-events:none}
-.panel,.hero-copy,.fc-main > *,fieldset{min-width:0}
-.panel{overflow-wrap:anywhere}
-input,textarea{min-width:0;max-width:100%;scroll-margin-block:120px}
-h2{scroll-margin-top:110px}
-body.compact #gl,body.compact .labels{display:none}
-body.compact .nogl{display:block;background:radial-gradient(ellipse at 50% 0%,#fff 0%,var(--paper) 50%,var(--paper-2) 100%)}
-body.compact .intro{height:auto}
-body.compact .hero{position:relative;height:auto;min-height:min(840px,100svh);align-items:center;padding-block:140px 64px}
-body.compact .hero-in{opacity:1!important;transform:none!important;pointer-events:auto!important}
-body.compact .station{padding-block:28px;justify-content:center}
-body.compact .panel{width:min(900px,100%)}
-body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-bottom,0px))}
-.manual-copy{display:block;width:100%;min-height:220px;margin-top:14px;font:inherit;line-height:1.5}
-@media(max-width:820px){
-  :root{--dock:124px}
-  .bar{gap:10px;padding-bottom:16px;background:rgba(244,247,252,.96)}
-  .brand{font-size:.82rem;gap:8px;min-width:0}
-  .lang{flex-shrink:0}
-  .lang button{min-width:38px;min-height:36px}
-  .dock{padding:12px 12px max(12px,env(safe-area-inset-bottom,0px))}
-  .btns{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;max-width:540px;border-radius:22px;overflow:visible;padding:5px;gap:3px}
-  .btns button{padding:12px 3px;font-size:.78rem;min-height:42px;min-width:0}
-  body.compact .hero{min-height:0;padding-block:112px 40px}
-  .hero::before{display:none}
-  h1{font-size:clamp(2rem,8.4vw,3.5rem);line-height:1.1}
-  .eyebrow{font-size:.65rem;letter-spacing:.07em;gap:8px}
-  .eyebrow::before,.eyebrow::after{width:14px;flex-shrink:0}
-  .aud{font-size:.95rem;gap:6px 14px}
-  body.compact .station{padding-block:16px}
-  body.compact .end{padding-bottom:calc(var(--dock) + 40px + env(safe-area-inset-bottom,0px))}
-  .panel{padding:24px 20px}
-  .facts{gap:16px}
+html,body{overflow-x:clip}
+.hero{overflow-x:clip}
+@media (max-width:640px){
+  :root{--dock:74px}
+  .hero{align-items:center;padding-top:calc(env(safe-area-inset-top,0px) + 74px);padding-bottom:calc(var(--dock) + 10px)}
+  .eyebrow{font-size:.6rem;letter-spacing:.1em;margin-bottom:12px;gap:8px}
+  .eyebrow::before,.eyebrow::after{width:14px}
+  h1{font-size:clamp(1.7rem,7.6vw,2.3rem);margin-bottom:12px}
+  .sub{font-size:.96rem;line-height:1.5;margin-bottom:16px}
+  .cta{gap:8px}
+  .cta .btn{padding:12px 16px;font-size:.88rem}
+  .aud{font-size:.86rem;margin-top:14px;gap:2px 12px}
+  .aud{gap:4px 14px}
+  .aud > .mono{flex-basis:100%;font-size:.62rem;margin-bottom:2px}
+  .aud b{font-size:.92rem}
+  .facts{margin-top:14px}
+  .facts div{padding-top:8px}
+  .facts strong{font-size:1.15rem}
+  .facts span{font-size:.74rem;line-height:1.3}
+  .btns{padding:4px}
+  .btns button{padding:11px 15px;font-size:.9rem}
+  .bar{padding-bottom:18px}
+  .sub br{display:none}
+  .btns{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);scroll-padding-inline:24px}
+  .mono-mark{width:34px;height:24px}
+  .brand{font-size:.86rem}
 }
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:400px){.eyebrow::before,.eyebrow::after{display:none}}
+@media (max-width:640px) and (max-height:700px){
+  .aud{display:none}
+  .sub{font-size:.9rem}
+  h1{font-size:1.7rem}
+}
 </style>
 </head>
-<body class="compact">
+<body>
 
 <canvas id="gl" aria-hidden="true"></canvas>
 <div class="nogl" id="nogl" aria-hidden="true"></div>
@@ -298,7 +290,7 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
         <div class="hero-copy">
           <span class="eyebrow mono"><span class="ru">Эксперт по инновационным цифровым технологиям</span><span class="en">Expert in emerging digital technologies</span></span>
           <h1><span class="ru">Новые технологии. <span class="l2">Осмысленное обучение.</span></span><span class="en">New technologies. <span class="l2">Meaningful learning.</span></span></h1>
-          <p class="sub"><span class="ru">Исследую инновационные цифровые технологии.<br>На их основе разрабатываю кейсы, модули и курсы для ваших слушателей.</span><span class="en">I research emerging digital technologies.<br>Based on them, I develop cases, modules and courses for your learners.</span></p>
+          <p class="sub"><span class="ru">Исследую инновационные цифровые технологии.<br> На их основе разрабатываю кейсы, модули и курсы для ваших слушателей.</span><span class="en">I research emerging digital technologies.<br> Based on them, I develop cases, modules and courses for your learners.</span></p>
           <div class="cta">
             <a class="btn primary" href="#formats" data-go="formats"><span class="ru">Выбрать решение</span><span class="en">Choose a solution</span> ↗</a>
             <a class="btn" href="#method" data-go="method"><span class="ru">Мой подход</span><span class="en">My approach</span> ↓</a>
@@ -445,7 +437,7 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
           <div class="field"><label class="mono" for="req-time"><span class="ru">Сроки</span><span class="en">Timing</span></label><input id="req-time" type="text" maxlength="150"></div>
         </div>
         <div class="row2">
-          <div class="field"><label class="mono" for="req-name"><span class="ru">Имя</span><span class="en">Name</span> <span class="req">*</span></label><input id="req-name" type="text" maxlength="80" autocomplete="name" required aria-required="true"><div class="err" id="err-name"></div></div>
+          <div class="field"><label class="mono" for="req-name"><span class="ru">Имя</span><span class="en">Name</span> <span class="req">*</span></label><input id="req-name" type="text" maxlength="80" autocomplete="name"><div class="err" id="err-name"></div></div>
           <div class="field"><label class="mono" for="req-org"><span class="ru">Организация или проект</span><span class="en">Organisation or project</span></label><input id="req-org" type="text" maxlength="150" autocomplete="organization"></div>
         </div>
         <div class="field"><label class="mono" for="req-phone"><span class="ru">Телефон или Telegram</span><span class="en">Phone or Telegram</span></label><input id="req-phone" type="text" maxlength="60" autocomplete="tel"></div>
@@ -467,7 +459,7 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
   </section>
 </main>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
   var ST=[
@@ -560,7 +552,7 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
         box.appendChild(c);
       });
       var wrap=document.getElementById("other-"+g), inp=document.getElementById("other-"+g+"-input");
-      if(wrap){ wrap.hidden=!BRIEF[g][pick[g]].other; if(wrap.hidden) setErr("err-"+g,""); inp.placeholder=PH[g][lang]; }
+      if(wrap){ wrap.hidden=!BRIEF[g][pick[g]].other; inp.placeholder=PH[g][lang]; }
     });
     document.getElementById("req-desc").placeholder=PH.desc[lang];
     document.getElementById("req-name").placeholder=lang==="ru"?"Как к вам обращаться":"How should I address you";
@@ -569,11 +561,7 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
     document.getElementById("req-time").placeholder=lang==="ru"?"Например, запуск в следующем квартале":"For example, launch next quarter";
     document.getElementById("req-phone").placeholder=lang==="ru"?"+7 … или @username":"+7 … or @username";
   }
-  function setErr(id,msg){
-    var e=document.getElementById(id); if(e) e.textContent=msg||"";
-    var key=id.replace("err-",""), field=document.getElementById(key==="name"?"req-name":"other-"+key+"-input");
-    if(field){field.setAttribute("aria-invalid",msg?"true":"false");field.setAttribute("aria-describedby",id);}
-  }
+  function setErr(id,msg){ var e=document.getElementById(id); if(e) e.textContent=msg||""; }
   ["who","what","tech"].forEach(function(g){ document.getElementById("other-"+g+"-input").addEventListener("input",function(){ setErr("err-"+g,""); }); });
   document.getElementById("req-name").addEventListener("input",function(){ setErr("err-name",""); });
   document.getElementById("reqForm").addEventListener("submit",function(e){
@@ -586,12 +574,7 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
   });
   function copyText(txt,okMsg,node){
     var st=document.getElementById("copyStatus");
-    if(!node){
-      node=document.getElementById("manualCopy");
-      if(!node){ node=document.createElement("textarea"); node.id="manualCopy"; node.className="manual-copy"; node.readOnly=true; st.parentNode.appendChild(node); }
-      node.setAttribute("aria-label",lang==="ru"?"Текст письма для копирования":"Message to copy"); node.value=txt; node.hidden=true;
-    }
-    function fb(){ if(node && node.tagName==="TEXTAREA"){ node.hidden=false; node.focus(); node.select(); }else if(node){ var r=document.createRange(); r.selectNodeContents(node); var s=getSelection(); s.removeAllRanges(); s.addRange(r); } st.textContent=lang==="ru"?"Скопируйте вручную":"Copy it manually"; }
+    function fb(){ if(node){ var r=document.createRange(); r.selectNodeContents(node); var s=getSelection(); s.removeAllRanges(); s.addRange(r); } st.textContent=lang==="ru"?"Скопируйте вручную":"Copy it manually"; }
     try{ navigator.clipboard.writeText(txt).then(function(){ st.textContent=okMsg; },fb); }catch(err){ fb(); }
   }
   document.getElementById("copyMsg").addEventListener("click",function(){ copyText(subject()+"\n\n"+letter(), lang==="ru"?"Письмо скопировано":"Message copied"); });
@@ -601,9 +584,6 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
     lang=l; document.body.dataset.lang=l; document.documentElement.lang=l;
     document.querySelectorAll(".lang button").forEach(function(b){ b.setAttribute("aria-pressed",b.dataset.l===l); });
     renderNav(); renderBench(); renderBrief();
-    document.querySelector(".dock").setAttribute("aria-label",l==="ru"?"Разделы":"Sections");
-    ["name","who","what","tech"].forEach(function(g){setErr("err-"+g,"");});
-    ["who","what","tech"].forEach(function(g){document.getElementById("other-"+g+"-input").setAttribute("aria-label",l==="ru"?"Уточните вариант «другое»":"Specify other");});
     try{ localStorage.setItem("zi-lang",l); }catch(e){}
     measure();
   }
@@ -613,73 +593,36 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
   var sections=ST.map(function(s){ return document.getElementById(s.id); });
   var off=[], vh=innerHeight;
   function measure(){ vh=innerHeight; off=sections.map(function(s){ return s.getBoundingClientRect().top+scrollY; }); }
-  var motionQuery=matchMedia("(prefers-reduced-motion: reduce)"), reduce=motionQuery.matches, flight=null;
-  var compact=true, sceneStopped=false;
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches, flight=null;
   function ease(t){ return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2; }
   function flyTo(id){
     measure();
     var i=ST.findIndex(function(s){return s.id===id;}); if(i<0) return;
-    var to=i===0?0:Math.max(0,off[i]-(compact?88:0));
+    var to=i===0?0:off[i];
     if(reduce){ scrollTo(0,to); arrive(i); return; }
-    var from=scrollY, dist=Math.abs(to-from), dur=compact?Math.min(650,250+dist/vh*60):Math.min(3000,900+dist/vh*200), t0=performance.now();
-    var thisFlight={i:i}; flight=thisFlight;
-    (function step(now){ if(flight!==thisFlight) return; var k=Math.min(1,(now-t0)/dur); scrollTo(0,from+(to-from)*ease(k)); if(k<1) requestAnimationFrame(step); else { flight=null; arrive(i); } })(t0);
+    var from=scrollY, dist=Math.abs(to-from), dur=Math.min(3000,900+dist/vh*200), t0=performance.now();
+    flight={i:i};
+    (function step(now){ if(!flight) return; var k=Math.min(1,(now-t0)/dur); scrollTo(0,from+(to-from)*ease(k)); if(k<1) requestAnimationFrame(step); else { flight=null; arrive(i); } })(t0);
   }
   function arrive(i){ var h=sections[i].querySelector("h2"); if(h) h.focus({preventScroll:true}); }
-  ["wheel","touchstart","pointerdown","keydown","focusin"].forEach(function(ev){ addEventListener(ev,function(){ flight=null; },{passive:true}); });
+  ["wheel","touchstart","keydown"].forEach(function(ev){ addEventListener(ev,function(){ flight=null; },{passive:true}); });
 
   setLang(lang);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(measure);
   addEventListener("resize",measure);
-  addEventListener("load",function(){ measure(); var h=location.hash.replace("#",""); var i=ST.findIndex(function(s){return s.id===h;}); if(i>0) flyTo(h); });
+  addEventListener("load",function(){ measure(); var h=location.hash.replace("#",""); var i=ST.findIndex(function(s){return s.id===h;}); if(i>0) scrollTo(0,off[i]); });
 
   var heroIn=document.getElementById("heroIn");
-  function stationAt(y){ var i=0; for(var j=0;j<off.length;j++) if(y>=off[j]-(compact?120:1)) i=j; return i; }
+  function stationAt(y){ var i=0; for(var j=0;j<off.length;j++) if(y>=off[j]-1) i=j; return i; }
   function heroFade(u){ var f=Math.max(0,Math.min(1,(u-.5)/.22)); heroIn.style.opacity=String(1-f); heroIn.style.transform="translateY("+(f*20)+"px)"; heroIn.style.pointerEvents=f>.9?"none":""; }
-  var staticListening=false;
-  function updateStaticNav(){
-    if(!compact) return;
-    var i=flight?flight.i:stationAt(scrollY);
-    if(i!==active){ active=i; markActive(); }
-  }
-  function changeLayout(toCompact){
-    var i=stationAt(scrollY), panel=i>0?sections[i].querySelector(".panel"):null;
-    var top=panel?panel.getBoundingClientRect().top:0;
-    compact=toCompact; document.body.classList.toggle("compact",toCompact); measure();
-    if(panel) scrollTo(0,scrollY+panel.getBoundingClientRect().top-top);
-  }
   function overlayOnly(){
-    sceneStopped=true; flight=null;
-    if(!compact) changeLayout(true);
-    heroIn.style.opacity=""; heroIn.style.transform=""; heroIn.style.pointerEvents="";
-    if(!staticListening){ addEventListener("scroll",updateStaticNav,{passive:true}); staticListening=true; }
-    measure(); updateStaticNav();
+    (function loop(){ var y=scrollY, i=stationAt(y); heroFade(i===0?Math.min(1,y/Math.max(1,off[1]-.9*vh)):1);
+      var act=flight?flight.i:i; if(act!==active){ active=act; markActive(); } requestAnimationFrame(loop); })();
   }
-  if(window.ResizeObserver){
-    var layoutObserver=new ResizeObserver(function(){measure();updateStaticNav();});
-    sections.forEach(function(s){layoutObserver.observe(s);});
-  }
-  var desktopQuery=matchMedia("(min-width:821px) and (min-height:760px)");
-  function checkMode(){ reduce=motionQuery.matches; if(reduce||!desktopQuery.matches) overlayOnly(); }
-  if(motionQuery.addEventListener){ motionQuery.addEventListener("change",checkMode); desktopQuery.addEventListener("change",checkMode); }
-  overlayOnly();
-  if(reduce||!desktopQuery.matches) return;
 
-  /* Load optional 3D without blocking navigation or the request form. */
-  var threeScript=document.createElement("script");
-  threeScript.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
-  threeScript.async=true;
-  threeScript.onload=function(){
-    if(reduce||!desktopQuery.matches||!window.THREE) return;
-    try{startScene();}catch(err){overlayOnly();}
-  };
-  threeScript.onerror=overlayOnly;
-  document.head.appendChild(threeScript);
-
-  function startScene(){
-  sceneStopped=false;
+  /* ---------- 3D ---------- */
+  if(!window.THREE){ overlayOnly(); return; }
   var canvas=document.getElementById("gl"), renderer;
-  canvas.addEventListener("webglcontextlost",function(e){e.preventDefault();overlayOnly();},{once:true});
   try{ renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:false,alpha:true,powerPreference:"high-performance"}); }catch(err){ overlayOnly(); return; }
   var small=Math.min(innerWidth,innerHeight)<700, D=small?.6:1;
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,small?1.5:1.75));
@@ -1025,12 +968,11 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
 
   var mouse={x:0,y:0}, sm={x:0,y:0}, cur={p:C0.p.clone(),l:C0.l.clone(),asm:0}, first=true, t0=performance.now(), last=t0;
   addEventListener("pointermove",function(e){ mouse.x=e.clientX/innerWidth*2-1; mouse.y=e.clientY/innerHeight*2-1; },{passive:true});
-  function resize(){ if(sceneStopped) return; var w=innerWidth,h=innerHeight; renderer.setSize(w,h,false); camera.aspect=w/h; camera.fov=w<h?72:55; camera.updateProjectionMatrix(); measure(); }
+  function resize(){ var w=innerWidth,h=innerHeight; renderer.setSize(w,h,false); camera.aspect=w/h; camera.fov=w<h?72:55; camera.updateProjectionMatrix(); measure(); }
   addEventListener("resize",resize); resize();
 
   var tmp=V(0,0,0), labels=[];
   function frame(now){
-    if(sceneStopped) return;
     var el=(now-t0)/1000, dt=Math.min(.1,(now-last)/1000); last=now; var st=camAt(scrollY);
     var introRamp=reduce?1:Math.min(1,el/2.2);
     var asmT=st.asm*(st.i===0&&st.f===0 ? introRamp : 1);
@@ -1042,9 +984,7 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
     camera.position.set(cur.p.x+sm.x*.45, cur.p.y-sm.y*.25, cur.p.z);
     tmp.copy(cur.l); tmp.x+=sm.x*.35; camera.lookAt(tmp);
     if(!reduce){ spinners.forEach(function(s){ s.o.rotation.y+=s.s*.01; }); bobbers.forEach(function(o){ o.position.y=1+Math.sin(el*1.1)*.06; }); haloP.rotation.z=el*.05; }
-    try{renderer.render(scene,camera);}catch(err){overlayOnly();return;}
-    if(compact){ changeLayout(false); }
-
+    renderer.render(scene,camera);
 
     heroFade(st.i===0&&st.f===0 ? st.u : 1);
     labels=[].slice.call(labelsBox.children);
@@ -1065,7 +1005,6 @@ body.compact .end{padding-bottom:calc(var(--dock) + 48px + env(safe-area-inset-b
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
-  } // startScene
 })();
 </script>
 
